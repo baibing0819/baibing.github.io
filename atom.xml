@@ -6,29 +6,15 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://baibing0819.github.io/"/>
-  <updated>2019-03-06T06:41:20.598Z</updated>
+  <updated>2019-03-06T03:26:52.662Z</updated>
   <id>http://baibing0819.github.io/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>Ice White</name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>MyFirstBlog</title>
-    <link href="http://baibing0819.github.io/2019/03/06/myfirstblog/"/>
-    <id>http://baibing0819.github.io/2019/03/06/myfirstblog/</id>
-    <published>2019-03-06T06:41:20.000Z</published>
-    <updated>2019-03-06T06:41:20.598Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>Hello World</title>
@@ -48,6 +34,26 @@
     
     </summary>
     
+    
+  </entry>
+  
+  <entry>
+    <title>MyFirstBlog</title>
+    <link href="http://baibing0819.github.io/2018/09/07/myfirstblog/"/>
+    <id>http://baibing0819.github.io/2018/09/07/myfirstblog/</id>
+    <published>2018-09-07T01:25:00.000Z</published>
+    <updated>2019-03-06T13:21:42.291Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="Markdown" scheme="http://baibing0819.github.io/categories/Markdown/"/>
+    
+    
+      <category term="Typora" scheme="http://baibing0819.github.io/tags/Typora/"/>
+    
+      <category term="Markdown" scheme="http://baibing0819.github.io/tags/Markdown/"/>
     
   </entry>
   
