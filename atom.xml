@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://baibing0819.github.io/"/>
   <updated>2019-03-06T06:41:20.598Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://baibing0819.github.io/</id>
   
   <author>
     <name>John Doe</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>MyFirstBlog</title>
-    <link href="http://yoursite.com/2019/03/06/myfirstblog/"/>
-    <id>http://yoursite.com/2019/03/06/myfirstblog/</id>
+    <link href="http://baibing0819.github.io/2019/03/06/myfirstblog/"/>
+    <id>http://baibing0819.github.io/2019/03/06/myfirstblog/</id>
     <published>2019-03-06T06:41:20.000Z</published>
     <updated>2019-03-06T06:41:20.598Z</updated>
     
@@ -32,8 +32,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2019/03/06/hello-world/"/>
-    <id>http://yoursite.com/2019/03/06/hello-world/</id>
+    <link href="http://baibing0819.github.io/2019/03/06/hello-world/"/>
+    <id>http://baibing0819.github.io/2019/03/06/hello-world/</id>
     <published>2019-03-06T03:26:52.662Z</published>
     <updated>2019-03-06T03:26:52.662Z</updated>
     
