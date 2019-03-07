@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://baibing0819.github.io/"/>
-  <updated>2019-03-06T03:26:52.662Z</updated>
+  <updated>2019-03-07T14:13:32.756Z</updated>
   <id>http://baibing0819.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MyFirstBlog</title>
+    <link href="http://baibing0819.github.io/2019/03/07/myfirstblog/"/>
+    <id>http://baibing0819.github.io/2019/03/07/myfirstblog/</id>
+    <published>2019-03-07T01:25:00.000Z</published>
+    <updated>2019-03-07T14:13:32.756Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>    在hexo+github上的第一个博客，看看效果。</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;pre&gt;&lt;code&gt;    在hexo+github上的第一个博客，看看效果。
+&lt;/code&gt;&lt;/pre&gt;
+      
+    
+    </summary>
+    
+      <category term="Markdown" scheme="http://baibing0819.github.io/categories/Markdown/"/>
+    
+    
+      <category term="Typora" scheme="http://baibing0819.github.io/tags/Typora/"/>
+    
+      <category term="Markdown" scheme="http://baibing0819.github.io/tags/Markdown/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
@@ -34,26 +62,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>MyFirstBlog</title>
-    <link href="http://baibing0819.github.io/2018/09/07/myfirstblog/"/>
-    <id>http://baibing0819.github.io/2018/09/07/myfirstblog/</id>
-    <published>2018-09-07T01:25:00.000Z</published>
-    <updated>2019-03-06T13:21:42.291Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="Markdown" scheme="http://baibing0819.github.io/categories/Markdown/"/>
-    
-    
-      <category term="Typora" scheme="http://baibing0819.github.io/tags/Typora/"/>
-    
-      <category term="Markdown" scheme="http://baibing0819.github.io/tags/Markdown/"/>
     
   </entry>
   
