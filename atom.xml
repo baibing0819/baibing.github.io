@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://baibing0819.github.io/"/>
-  <updated>2019-03-08T10:03:43.198Z</updated>
+  <updated>2019-03-08T10:09:46.109Z</updated>
   <id>http://baibing0819.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://baibing0819.github.io/2019/03/08/hexo-github-da-jian-ge-ren-bo-ke/"/>
     <id>http://baibing0819.github.io/2019/03/08/hexo-github-da-jian-ge-ren-bo-ke/</id>
     <published>2019-03-08T08:59:00.000Z</published>
-    <updated>2019-03-08T10:03:43.198Z</updated>
+    <updated>2019-03-08T10:09:46.109Z</updated>
     
     <content type="html"><![CDATA[<p>前言：<br>    花了两天时间，总算是搭建了自己的个人博客。基本上跟着网上大神的教程做，大部分很顺利，但还是不可避免的遇到一些小的坑，因此花费了不少的时间，故在此也总结一下自己遇到的问题，若大家遇到相似的问题，可以快速的解决。搭建博客主要是下面三个方面，完成后就可以完美的发博客啦。</p><h3 id="步骤-教程直通车"><a href="#步骤-教程直通车" class="headerlink" title="步骤+教程直通车:"></a><strong>步骤+教程直通车</strong>:</h3><h4 id="1、hexo-github-搭建个人博客"><a href="#1、hexo-github-搭建个人博客" class="headerlink" title="1、hexo + github 搭建个人博客:"></a>1、hexo + github 搭建个人博客:</h4><pre><code>[网址传送门：](https://mp.weixin.qq.com/s?__biz=MzI5NDY1MjQzNA==&amp;mid=2247488956&amp;idx=3&amp;sn=a0c52c1a270269925fc6ea9e84596e10&amp;chksm=ec5ecac1db2943d75368ef598fd22eda6497dbc35e5b8941335d2fc9e44de516bcc470f8e4a2&amp;mpshare=1&amp;scene=1&amp;srcid=0302seoWmMigQ065XCb3qvxP&amp;key=0c5bd8d37f17829348d3918abd80122f9caed41ef7b4beefc679edddb6b35997f0f0ad370cf89dbe6c92ab782f69d7bacc8a7a59f3d7a19fb1069951797c63f67131fb05a0f8ab28ae68db51b144f374&amp;ascene=1&amp;uin=MjY0NTYwMzU0Mw%3D%3D&amp;devicetype=Windows+10&amp;version=62060728&amp;lang=zh_CN&amp;pass_ticket=1UsAPqwJzqsYyPrWZrAjE7b15egEPEQyl1ynzAbdrWvGDxenn7xA694UKAIrWc0V)</code></pre><h4 id="2、选择主题："><a href="#2、选择主题：" class="headerlink" title="2、选择主题："></a>2、选择主题：</h4><p><a href="https://blinkfox.github.io/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/" target="_blank" rel="noopener">网址传送门：</a></p><h4 id="3、搭建图床："><a href="#3、搭建图床：" class="headerlink" title="3、搭建图床："></a>3、搭建图床：</h4><p><a href="https://www.cnblogs.com/asheng2016/p/9572128.html" target="_blank" rel="noopener">网址传送门：</a><br>    个人就是按照上面的网址教程一步步的安装完成的。现在来说一下我遇到的一些问题…</p><h3 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h3><p>1、选择主题并配置后，页面没有任何变化，依旧是原始画面。<br>        是因为从网上下载解压后的主题文件夹名字与_config.yml文件里面的配置不同，必须改为一致的。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/blogcfg.png" alt><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/docname.png" alt><br>2、按照主题帖创建主题后，出现了博客页面空白的现象。<br>        这个是因为按照教程修改配置时，在改动项冒号后直接写内容，导致页面不显示。_config.yml 文件里所有配置项的内容都需要在其冒号后空一格再写内容。<br>3、想换掉主题 中的照片、logo时，改成一样的名字没有成功。<br>        因为图片的格式与之前的不同，可能你的是a.png，原主题的是a.jpg的，所以和其配置选项中的名字不同，导致换图片失败。<br>4、利用hexo + github搭建好博客后，在git bash 里输入hexo server 启动本地预览（<a href="http://localhost:4000/）发现页面找不到，404错误等。" target="_blank" rel="noopener">http://localhost:4000/）发现页面找不到，404错误等。</a><br>        很有可能4000这个端口被占用，此时可以输入命令 (hexo server -p 5000) 来换一个端口就可以了。</p>]]></content>
     
@@ -48,7 +48,7 @@
     <link href="http://baibing0819.github.io/2019/03/07/myfirstblog/"/>
     <id>http://baibing0819.github.io/2019/03/07/myfirstblog/</id>
     <published>2019-03-07T01:25:00.000Z</published>
-    <updated>2019-03-08T09:55:46.787Z</updated>
+    <updated>2019-03-08T10:09:52.431Z</updated>
     
     <content type="html"><![CDATA[<pre><code>    在hexo+github上的第一个博客，看看效果。</code></pre>]]></content>
     
