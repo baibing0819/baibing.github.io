@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://baibing0819.github.io/"/>
-  <updated>2019-04-19T09:36:27.423Z</updated>
+  <updated>2019-04-19T13:26:21.155Z</updated>
   <id>http://baibing0819.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sciencenet</title>
+    <link href="http://baibing0819.github.io/2019/04/19/sciencenet/"/>
+    <id>http://baibing0819.github.io/2019/04/19/sciencenet/</id>
+    <published>2019-04-19T03:20:00.000Z</published>
+    <updated>2019-04-19T13:26:21.155Z</updated>
+    
+    <content type="html"><![CDATA[<p>ssr客户端下载：<br><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases" target="_blank" rel="noopener">https://github.com/shadowsocksrr/shadowsocksr-csharp/releases</a><br>节点网站（通过ssr客户端选取）：<br><a href="https://free-ss.site/" target="_blank" rel="noopener">https://free-ss.site/</a></p><p>clushx for window下载:<br><a href="https://github.com/Fndroid/clash_for_windows_pkg" target="_blank" rel="noopener">https://github.com/Fndroid/clash_for_windows_pkg</a><br>节点配置文件：<br><a href="https://api.loxcloud.com/ss/orders/101707/clashSub?port=17069&amp;passwd=VngBvFnH" target="_blank" rel="noopener">https://api.loxcloud.com/ss/orders/101707/clashSub?port=17069&amp;passwd=VngBvFnH</a><br>配置教程：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/net/clash%20for%20win%E9%85%8D%E7%BD%AE.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;ssr客户端下载：&lt;br&gt;&lt;a href=&quot;https://github.com/shadowsocksrr/shadowsocksr-csharp/releases&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/sh
+      
+    
+    </summary>
+    
+      <category term="Personal Note" scheme="http://baibing0819.github.io/categories/Personal-Note/"/>
+    
+    
+      <category term="tool" scheme="http://baibing0819.github.io/tags/tool/"/>
+    
+  </entry>
   
   <entry>
     <title>linux中的vim操作</title>

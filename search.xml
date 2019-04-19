@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>sciencenet</title>
+      <link href="/2019/04/19/sciencenet/"/>
+      <url>/2019/04/19/sciencenet/</url>
+      
+        <content type="html"><![CDATA[<p>ssr客户端下载：<br><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases" target="_blank" rel="noopener">https://github.com/shadowsocksrr/shadowsocksr-csharp/releases</a><br>节点网站（通过ssr客户端选取）：<br><a href="https://free-ss.site/" target="_blank" rel="noopener">https://free-ss.site/</a></p><p>clushx for window下载:<br><a href="https://github.com/Fndroid/clash_for_windows_pkg" target="_blank" rel="noopener">https://github.com/Fndroid/clash_for_windows_pkg</a><br>节点配置文件：<br><a href="https://api.loxcloud.com/ss/orders/101707/clashSub?port=17069&amp;passwd=VngBvFnH" target="_blank" rel="noopener">https://api.loxcloud.com/ss/orders/101707/clashSub?port=17069&amp;passwd=VngBvFnH</a><br>配置教程：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/net/clash%20for%20win%E9%85%8D%E7%BD%AE.png" alt></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Personal Note </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> tool </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>linux中的vim操作</title>
       <link href="/2019/03/10/linux-zhong-de-vim-cao-zuo/"/>
       <url>/2019/03/10/linux-zhong-de-vim-cao-zuo/</url>

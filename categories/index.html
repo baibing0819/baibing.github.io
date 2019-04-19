@@ -293,17 +293,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 
                 
                 
-                <a href="/categories/Personal-Note/" title="Personal Note: 0">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default " style="background-color: #F9EBEA;">Personal Note
-                        <span class="tag-length">0</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/categories/Markdown/" title="Markdown: 2">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default " style="background-color: #F5EEF8;">Markdown
+                             chip-default " style="background-color: #F9EBEA;">Markdown
                         <span class="tag-length">2</span>
                     </span>
                 </a>
@@ -311,7 +303,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 
                 <a href="/categories/Linux/" title="Linux: 1">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default " style="background-color: #D5F5E3;">Linux
+                             chip-default " style="background-color: #F5EEF8;">Linux
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -319,8 +311,16 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 
                 <a href="/categories/Programming-Thinking/" title="Programming Thinking: 2">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default " style="background-color: #E8F8F5;">Programming Thinking
+                             chip-default " style="background-color: #D5F5E3;">Programming Thinking
                         <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/Personal-Note/" title="Personal Note: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #E8F8F5;">Personal Note
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -366,7 +366,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     color: '#3C4858'
                 }
             },
-            indicator: [{"name":"Personal Note","max":2},{"name":"Markdown","max":2},{"name":"Linux","max":2},{"name":"Programming Thinking","max":2}],
+            indicator: [{"name":"Markdown","max":3},{"name":"Linux","max":3},{"name":"Programming Thinking","max":3},{"name":"Personal Note","max":3}],
             nameGap: 5,
             center: ['50%','55%'],
             radius: '66%'
@@ -377,7 +377,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             itemStyle: {normal: {areaStyle: {type: 'default'}}},
             data : [
                 {
-                    value : [0,2,1,2],
+                    value : [2,1,2,1],
                     name : '文章分类数量'
                 }
             ]
