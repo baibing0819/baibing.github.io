@@ -255,6 +255,19 @@
 </header>
 
 
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -286,12 +299,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Markdown/" target="_blank">
-                                <span class="chip bg-color">Markdown</span>
-                            </a>
-                        
                             <a href="/tags/Typora/" target="_blank">
                                 <span class="chip bg-color">Typora</span>
+                            </a>
+                        
+                            <a href="/tags/Markdown/" target="_blank">
+                                <span class="chip bg-color">Markdown</span>
                             </a>
                         
                     </div>
@@ -791,12 +804,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Github/" target="_blank">
-                        <span class="chip bg-color">Github</span>
-                    </a>
-                    
                     <a href="/tags/Markdown/" target="_blank">
                         <span class="chip bg-color">Markdown</span>
+                    </a>
+                    
+                    <a href="/tags/Github/" target="_blank">
+                        <span class="chip bg-color">Github</span>
                     </a>
                     
                 </div>
@@ -841,12 +854,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Markdown/" target="_blank">
-                        <span class="chip bg-color">Markdown</span>
-                    </a>
-                    
                     <a href="/tags/Typora/" target="_blank">
                         <span class="chip bg-color">Typora</span>
+                    </a>
+                    
+                    <a href="/tags/Markdown/" target="_blank">
+                        <span class="chip bg-color">Markdown</span>
                     </a>
                     
                 </div>
