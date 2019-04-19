@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>linux中的vim操作</title>
+      <link href="/2019/03/10/linux-zhong-de-vim-cao-zuo/"/>
+      <url>/2019/03/10/linux-zhong-de-vim-cao-zuo/</url>
+      
+        <content type="html"><![CDATA[<p>基本命令：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/vim_cmd.png" alt></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vim </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>两数之和</title>
       <link href="/2019/03/10/liang-shu-zhi-he/"/>
       <url>/2019/03/10/liang-shu-zhi-he/</url>
@@ -74,9 +99,9 @@
       
         <tags>
             
-            <tag> Markdown </tag>
-            
             <tag> Github </tag>
+            
+            <tag> Markdown </tag>
             
         </tags>
       
@@ -101,9 +126,9 @@
       
         <tags>
             
-            <tag> Typora </tag>
-            
             <tag> Markdown </tag>
+            
+            <tag> Typora </tag>
             
         </tags>
       

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://baibing0819.github.io/"/>
-  <updated>2019-03-13T12:19:27.487Z</updated>
+  <updated>2019-04-19T09:36:27.423Z</updated>
   <id>http://baibing0819.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux中的vim操作</title>
+    <link href="http://baibing0819.github.io/2019/03/10/linux-zhong-de-vim-cao-zuo/"/>
+    <id>http://baibing0819.github.io/2019/03/10/linux-zhong-de-vim-cao-zuo/</id>
+    <published>2019-03-10T03:20:00.000Z</published>
+    <updated>2019-04-19T09:36:27.423Z</updated>
+    
+    <content type="html"><![CDATA[<p>基本命令：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/vim_cmd.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;基本命令：&lt;br&gt;&lt;img src=&quot;https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/vim_cmd.png&quot; alt&gt;&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://baibing0819.github.io/categories/Linux/"/>
+    
+    
+      <category term="vim" scheme="http://baibing0819.github.io/tags/vim/"/>
+    
+  </entry>
   
   <entry>
     <title>两数之和</title>
@@ -92,9 +118,9 @@
       <category term="Markdown" scheme="http://baibing0819.github.io/categories/Markdown/"/>
     
     
-      <category term="Markdown" scheme="http://baibing0819.github.io/tags/Markdown/"/>
-    
       <category term="Github" scheme="http://baibing0819.github.io/tags/Github/"/>
+    
+      <category term="Markdown" scheme="http://baibing0819.github.io/tags/Markdown/"/>
     
   </entry>
   
@@ -120,9 +146,9 @@
       <category term="Markdown" scheme="http://baibing0819.github.io/categories/Markdown/"/>
     
     
-      <category term="Typora" scheme="http://baibing0819.github.io/tags/Typora/"/>
-    
       <category term="Markdown" scheme="http://baibing0819.github.io/tags/Markdown/"/>
+    
+      <category term="Typora" scheme="http://baibing0819.github.io/tags/Typora/"/>
     
   </entry>
   
