@@ -5,10 +5,35 @@
     
     <entry>
       <title>sciencenet1</title>
+      <link href="/2019/05/09/desktop/"/>
+      <url>/2019/05/09/desktop/</url>
+      
+        <content type="html"><![CDATA[<p><strong>ubuntu下为应用设置启动图标</strong><br>在ubuntu系统下，通常会有一些应用程序通过终端来打开，这时候我们希望在图形化桌面创建一个他的快捷方式，从而方便的打开它，这里，来记录一下创建过程。 这里我以为微信网页版应用建立桌面图标为例，其他应用步骤相同.<br>1、首先打开终端，进入目录cd /usr/share/applications<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/indir.jpg" alt><br>2、sudo vim wechat.desktop（注：名字自己取，后缀不要改）<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/desktop.jpg" alt><br>3、打开之后添加以下内容：<br>[Desktop Entry]<br>Name=WeChat<br>Comment=WeChat Client<br>Exec=/存放应用程序的绝对路径/<br>Icon=/存放应用程序图标的绝对路径/<br>Terminal=false<br>Type=Application<br>Categories=Application;<br>Encoding=UTF-8<br>StartupNotify=true<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/desktopcode.jpg" alt></p><p>注意：应用程序和为他设置的图片放在同一文件夹下。完成后保存退出，就能够在应用搜索栏里查找的你设置<br>的应用启动图标了。<br>下面是效果图：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/xiaoguotu.png" alt></p><p><strong>二、为应用设置环境变量—终端快捷启动</strong><br>有时我们也不想设置过多的应用图标，希望能够从终端快速输入软件名字直接启动，这时，我们就可以为其设置环境变量。环境变量的作用就是让用户能够无需cd到可执行应用文件夹下在任意当前目录下可以直接输入应用名字打开。过程如下：<br>1、用vim打开环境变量配置文件： vim ~/.bashrc<br>2、追加环境变量路径(将你要设置的应用的绝对路径加入，见下图内容中的最后一行)：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/path.jpg" alt><br><strong>Tips：</strong><br>在我们能够从终端输入应用名字快速启动，有时候我们发现该应用会占用我们的当前终端，用户无法在做其他操作，直到该应用退出或是重新打开一个终端。这时我们可以使用 &amp; 让应用后台运行，解决无法控制终端问题。例如打开atom，输入 atom &amp;即可。更进一步，如果不限每次都这样输入，我们同样可以写进环境变量文件，即用alias设置别名：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/alias.jpg" alt></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> tool </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>sciencenet1</title>
       <link href="/2019/04/24/sciencenet1/"/>
       <url>/2019/04/24/sciencenet1/</url>
       
-        <content type="html"><![CDATA[<p><strong>Clash for linux:</strong><br>1、clash-linux获取地址(选取amd版本即可)： <a href="https://github.com/Dreamacro/clash/releases" target="_blank" rel="noopener">https://github.com/Dreamacro/clash/releases</a><br>2、教程网址：<a href="https://withdewhua.space/2019/01/22/use-clash-linux-in-deepin/" target="_blank" rel="noopener">https://withdewhua.space/2019/01/22/use-clash-linux-in-deepin/</a><br>3、编辑~/.config/clash下的 config.yml文件<br>4、因为没有gui界面，网页管理clash，重新启动 clash-linux 以加载配置文件，可通过 <a href="http://clash.razord.top/" target="_blank" rel="noopener">http://clash.razord.top/</a> 或者 <a href="http://yacd.haishan.me/#/" target="_blank" rel="noopener">http://yacd.haishan.me/#/</a> 进行策略组节点的切换，连接的 ip 和端口根据自己的 config.yml 中的external-controller填写；<br>5、可配合浏览器插件使用，也可以使用系统代理（推荐），系统代理可在控制中心-&gt;网络-&gt;系统代理-&gt;手动处填写（根据自己配置文件里的端口填写）。</p><p>Tips：设置启动器图标及自启动 自己找一张图片当作 clash-linux 的图标，可存放在 clash-linux 同一文件夹下； 打开终端，输入sudo nano /usr/share/applications/clash.desktop，然后输入以下内容：</p><p>#以下内容自己根据实际情况编写<br>[Desktop Entry]<br>Version=0.10.2<br>Comment=A rule-based tunnel in Go Exec=/<br>Name=Clash full/path/to/clash-linux<br>Icon=/full/path/to/clash-logo.png Terminal=false<br>Type=Application<br>Categories=Network<br>第二步做好之后启动器里可以找到 clash 了，右键点击后选中开机自动启动。</p>]]></content>
+        <content type="html"><![CDATA[<p><strong>Clash for linux:</strong><br>1、clash-linux获取地址(选取amd版本即可)： <a href="https://github.com/Dreamacro/clash/releases" target="_blank" rel="noopener">https://github.com/Dreamacro/clash/releases</a><br>2、教程网址：<a href="https://withdewhua.space/2019/01/22/use-clash-linux-in-deepin/" target="_blank" rel="noopener">https://withdewhua.space/2019/01/22/use-clash-linux-in-deepin/</a><br>3、编辑~/.config/clash下的 config.yml文件<br>4、因为没有gui界面，网页管理clash，重新启动 clash-linux 以加载配置文件，可通过 <a href="http://clash.razord.top/" target="_blank" rel="noopener">http://clash.razord.top/</a> 或者 <a href="http://yacd.haishan.me/#/" target="_blank" rel="noopener">http://yacd.haishan.me/#/</a> 进行策略组节点的切换，连接的 ip 和端口根据自己的 config.yml 中的external-controller填写；<br>5、可配合浏览器插件使用，也可以使用系统代理（推荐），系统代理可在控制中心-&gt;网络-&gt;系统代理-&gt;手动处填写（根据自己配置文件里的端口填写）。（例如 个人配置文件ip为127.0.0.1   socks端口为8888 http端口为8889，则在对应位置填写即可）</p><p>Tips：设置启动器图标及自启动 自己找一张图片当作 clash-linux 的图标，可存放在 clash-linux 同一文件夹下； 打开终端，输入sudo nano /usr/share/applications/clash.desktop，然后输入以下内容：</p><p>#以下内容自己根据实际情况编写<br>[Desktop Entry]<br>Name=Wechat<br>Version=0.10.2<br>Comment=A rule-based tunnel in Go<br>Exec=Clash full/path/to/clash-linux<br>Icon=/full/path/to/clash-logo.png Terminal=false<br>Type=Application<br>Categories=Network<br>注意：图片以微信应用为例<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/desktopcode.jpg" alt><br>第二步做好之后启动器里可以找到 clash 了，右键点击后选中开机自动启动。</p>]]></content>
       
       
       <categories>
