@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://baibing0819.github.io/"/>
-  <updated>2019-05-09T08:58:28.387Z</updated>
+  <updated>2019-05-13T12:08:53.978Z</updated>
   <id>http://baibing0819.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pycharm的简单配置</title>
+    <link href="http://baibing0819.github.io/2019/05/13/pycharm/"/>
+    <id>http://baibing0819.github.io/2019/05/13/pycharm/</id>
+    <published>2019-05-13T12:20:00.000Z</published>
+    <updated>2019-05-13T12:08:53.978Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>Pycharm下初次使用的一些配置选项：</strong><br>今天个人在ubuntu下使用pycharm创建自己的第一个python工作环境，遇到一些小的问题，在这里记录下来<br>1、选择编译器：个人安装的是anaconda3+pycharm，所以在这里选择了conda解释器来作为编译器，打开pycharm选择file-&gt;setting,接下来具体配置见图：<br>①点击按钮添加：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/python/interpreter.jpg" alt><br>②选择编译器：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/python/interpreter1.jpg" alt></p><p>2、配置程序模板，<br>我们可以为自己经常创建的文件设置模板，比如为.py文件设置抬头，程序功能、编写日期、作者等信息，这样我们之后创建就不需要做重复的工作了，具体步骤如下：同样的，选择file-&gt;setting，然后作如下配置。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/python/code_template.jpg" alt><br>效果图如下：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/python/templateview.jpg" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;Pycharm下初次使用的一些配置选项：&lt;/strong&gt;&lt;br&gt;今天个人在ubuntu下使用pycharm创建自己的第一个python工作环境，遇到一些小的问题，在这里记录下来&lt;br&gt;1、选择编译器：个人安装的是anaconda3+pycharm，所以在这
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="http://baibing0819.github.io/categories/Python/"/>
+    
+    
+      <category term="pycharm" scheme="http://baibing0819.github.io/tags/pycharm/"/>
+    
+  </entry>
   
   <entry>
     <title>linnux应用图标及快速启动</title>
