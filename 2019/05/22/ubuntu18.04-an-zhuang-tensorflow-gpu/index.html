@@ -4,8 +4,8 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="pycharm的简单配置, IceBai">
-    <meta name="description" content="Pycharm下初次使用的一些配置选项：今天个人在ubuntu下使用pycharm创建自己的第一个python工作环境，遇到一些小的问题，在这里记录下来1、选择编译器：个人安装的是anaconda3+pycharm，所以在这里选择了cond">
+    <meta name="keywords" content="Ubuntu18.04安装Tensorflow-gpu, IceBai">
+    <meta name="description" content="前言：学习深度学习，安装框架，本文介绍的是安装Tensorflow-gpu版本，如果你的电脑有NVIDA显卡，那么就可以安装，文章主要介绍如何安装Ubuntu18.04 + Tensorflow-gpu + cuda8.0 + cuDNN6">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>pycharm的简单配置 | IceBai</title>
+    <title>Ubuntu18.04安装Tensorflow-gpu | IceBai</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -270,13 +270,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/python/code1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/9.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        pycharm的简单配置
+                        Ubuntu18.04安装Tensorflow-gpu
                     </div>
                 </div>
             </div>
@@ -298,8 +298,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/pycharm/" target="_blank">
-                                <span class="chip bg-color">pycharm</span>
+                            <a href="/tags/DeepLearning/" target="_blank">
+                                <span class="chip bg-color">DeepLearning</span>
+                            </a>
+                        
+                            <a href="/tags/tools/" target="_blank">
+                                <span class="chip bg-color">tools</span>
                             </a>
                         
                     </div>
@@ -310,8 +314,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Python/" class="post-category" target="_blank">
-                                Python
+                            <a href="/categories/DeepLearning/" class="post-category" target="_blank">
+                                DeepLearning
                             </a>
                         
                     </div>
@@ -322,7 +326,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-05-13
+                    2019-05-22
                 </div>
 
                 
@@ -338,8 +342,48 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><strong>Pycharm下初次使用的一些配置选项：</strong><br>今天个人在ubuntu下使用pycharm创建自己的第一个python工作环境，遇到一些小的问题，在这里记录下来<br>1、选择编译器：个人安装的是anaconda3+pycharm，所以在这里选择了conda解释器来作为编译器，打开pycharm选择file-&gt;setting,接下来具体配置见图：<br>①点击按钮添加：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/python/interpreter.jpg" alt><br>②选择编译器：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/python/interpreter1.jpg" alt></p>
-<p>2、配置程序模板，<br>我们可以为自己经常创建的文件设置模板，比如为.py文件设置抬头，程序功能、编写日期、作者等信息，这样我们之后创建就不需要做重复的工作了，具体步骤如下：同样的，选择file-&gt;setting，然后作如下配置。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/python/code_template.jpg" alt><br>效果图如下：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/python/templateview.jpg" alt></p>
+                <p><strong>前言：</strong><br>学习深度学习，安装框架，本文介绍的是安装Tensorflow-gpu版本，如果你的电脑有NVIDA显卡，那么就可以安装，文章主要介绍如何安装Ubuntu18.04 + Tensorflow-gpu + cuda8.0 + cuDNN6.0。</p>
+<p><strong>一些名词：</strong><br><strong>CUDA</strong>(Compute Unified Device Architecture)，是显卡厂商NVIDIA推出的运算平台。CUDA™是一种由NVIDIA推出的通用并行计算架构，该架构使GPU能够解决复杂的计算问题。<br><strong>NVIDIA cuDNN</strong>是用于深度神经网络的GPU加速库。它强调性能、易用性和低内存开销。NVIDIA cuDNN可以集成到更高级别的机器学习框架中，如加州大学伯克利分校的流行caffe软件。简单的，插入式设计可以让开发人员专注于设计和实现神经网络模型，而不是调整性能，同时还可以在GPU上实现高性能现代并行计算。</p>
+<p><strong>安装过程：</strong><br><strong>一、打开软件更新-&gt;附加驱动，选择nvidia最新确定，然后应用更改。</strong><br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/8.jpg" alt><br>验证驱动是否安装成功：在应用搜索栏输入NVIDA，找到NVIDIA X Sever Settings并打开</p>
+<p>安装成功！</p>
+<p><strong>二、安装Tensorflow依赖的编译工具bazel</strong><br>1、安装bazel前，需先安装JDK8：<br>sudo apt-get install software-properties-common</p>
+<p>sudo add-apt-repository ppa:webupd8team/java</p>
+<p>sudo apt-get update</p>
+<p>sudo apt-get install openjdk-8-jdk</p>
+<p>安装完成后 验证java版本：java -version<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/1.jpg" alt><br>2、安装bazel：<br>echo “deb [arch=amd64] <a href="http://storage.googleapis.com/bazel-apt" target="_blank" rel="noopener">http://storage.googleapis.com/bazel-apt</a> stable jdk1.8” | sudo tee /etc/apt/sources.list.d/bazel.list</p>
+<p>sudo apt install curl</p>
+<p>sudo apt-get update </p>
+<p>sudo apt-get install bazel</p>
+<p>sudo apt-get upgrade bazel </p>
+<p><strong>三、安装cuda 8.0</strong><br>1、cuda 8.0 下载地址：<a href="https://developer.nvidia.com/cuda-80-ga2-download-archive" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-80-ga2-download-archive</a><br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/2.jpg" alt><br>2、下载完成后定位到下载目录，输入命令运行该文件<br>sudo sh cuda_8.0.27_linux.run –override</p>
+<p>注：–override是我在遇到gcc编译器版本过高时的解决办法，下面还是会需要对gcc降级，这里先用此方法处理，此时若遇到错误(在提示信息给出的log文件里可以查看到)：Can’t locate InstallUtils.pm in @INC，参考该博客解决方案：<a href="https://www.brilliantcode.net/1211/ubuntu-install-cuda-error-cant-locate-installutils-pm-in-inc/。" target="_blank" rel="noopener">https://www.brilliantcode.net/1211/ubuntu-install-cuda-error-cant-locate-installutils-pm-in-inc/。</a><br>关键部分：<br>mkdir cuda-8<br>sudo sh cuda_8.0.61_375.26_linux.run –noexec –target cuda-8<br>cp cuda-8/InstallUtils.pm /usr/share/perl5</p>
+<p>3、安装结束后添加环境变量，输入 vim ~/.bashrc<br>export PATH=/usr/local/cuda-8.0/bin:$PATH</p>
+<p>export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH</p>
+<p>4、nvcc -V</p>
+<p>如果没有nvcc则安装 sudo apt install nvidia-cuda-toolkit</p>
+<p>nvcc -V</p>
+<p>nvidia-smi<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/3.jpg" alt></p>
+<p>5、验证cuda8是否安装成功：<br>    进入NVIDIA_CUDA-8.0_Samples目录，执行：make，这里应该会报错，因为cuda8.0不支持gcc 5.0以上的编译器，因此需要降级，把编译器版本降到4.8，降级方法参考博客：<a href="https://blog.csdn.net/qq_31175231/article/details/77774971" target="_blank" rel="noopener">https://blog.csdn.net/qq_31175231/article/details/77774971</a></p>
+<p>关键命令记录(g++只需替换gcc即可)：<br>sudo apt-get install gcc-4.8<br>sudo update-alternatives –install /usr/bin/gcc gcc /usr/bin/gcc-4.8 100<br>sudo update-alternatives –config gcc   （用于验证）<br>gcc –version       （用于验证）</p>
+<p>6、CUDA8.0安装成功测试，<br>进入NVIDIA_CUDA-8.0_Samples目录，执行： sudo make （需等待一段时间）</p>
+<p>结束后进入1_Utilities目录，执行：./deviceQuery/deviceQuery ，结果如下：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/4.png" alt><br>执行： nvcc -V，结果如下：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/5.jpg" alt></p>
+<p>四、安装cuDNN6.0<br>下载地址6.0： <a href="https://developer.nvidia.com/rdp/cudnn-archive" target="_blank" rel="noopener">https://developer.nvidia.com/rdp/cudnn-archive</a></p>
+<p>打开终端，定位到下载的文件所在文件夹，依次输入命令：</p>
+<p>tar -xvzf cudnn-8.0-linux-x64-v6.0.tgz<br>sudo cp -P cuda/include/cudnn.h /usr/local/cuda-8.0/include<br>sudo cp -P cuda/lib64/libcudnn* /usr/local/cuda-8.0/lib64</p>
+<p>配置环境变量；<br>sudo vim ~/.bashrc</p>
+<p>添加：<br>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64”<br>export CUDA_HOME=/usr/local/cuda</p>
+<p>export PATH=””$CUDA_HOME/bin:$PATH”</p>
+<p>再执行：source ~/.bashrc</p>
+<p>配置完成！</p>
+<p>五、Tensorflow（GPU）安装 ,输入命令</p>
+<p>pip install <a href="https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.2.0-cp27-none-linux_x86_64.whl" target="_blank" rel="noopener">https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.2.0-cp27-none-linux_x86_64.whl</a></p>
+<p>注意：若出现错误：tensorflow-0.5.0-cp27-none-linux_x86_64.whl is not a supported wheel on this platform.<br>解决办法：<br>wget <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="noopener">https://bootstrap.pypa.io/get-pip.py</a><br>sudo python2.7 get-pip.py<br>sudo python2.7 -m pip install <a href="https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.5.0-cp27-none-linux_x86_64.whl" target="_blank" rel="noopener">https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.5.0-cp27-none-linux_x86_64.whl</a> –default-timeout=1000</p>
+<p>测试：<br>进入python环境，输入：python2.7<br>输入以下代码：<br>import tensorflow as tf</p>
+<p>a=tf.constant([1.0,2.0,3.0],shape=[3],name=’a’)</p>
+<p>b=tf.constant([1.0,2.0,3.0],shape=[3],name=’b’)</p>
+<p>c=a+b</p>
+<p>sess=tf.Session(config=tf.ConfigProto(log_device_placement=True))</p>
+<p>print sess.run(c)<br>效果图如下：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/6.jpg" alt></p>
 
             </div>
             <hr>
@@ -487,7 +531,7 @@
                     </span>
                     <a href="http://baibing0819.github.io" class="b-link-green">IceBai</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/05/13/pycharm/" class="b-link-green">pycharm的简单配置</a>
+                    <a href="/2019/05/22/ubuntu18.04-an-zhuang-tensorflow-gpu/" class="b-link-green">Ubuntu18.04安装Tensorflow-gpu</a>
                 </p>
             </div>
         </div>
@@ -769,7 +813,8 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/05/22/ubuntu18.04-an-zhuang-tensorflow-gpu/">
                     <div class="card-image">
@@ -782,9 +827,9 @@
                 <div class="card-content article-content">
                     <div class="summary">前言：学习深度学习，安装框架，本文介绍的是安装Tensorflow-gpu版本，如果你的电脑有NVIDA显卡，那么就可以安装，文章主要介绍如何安装Ubuntu18.04 + Tensorflow-gpu + cuda8.0 + cuDNN6</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -797,6 +842,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -819,26 +865,26 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/05/09/desktop/">
+                <a href="/2019/05/13/pycharm/">
                     <div class="card-image">
                         
-                        <img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/logo.jpg" class="responsive-img" alt="linnux应用图标及快速启动">
+                        <img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/python/code1.jpg" class="responsive-img" alt="pycharm的简单配置">
                         
-                        <span class="card-title">linnux应用图标及快速启动</span>
+                        <span class="card-title">pycharm的简单配置</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">ubuntu下为应用设置启动图标在ubuntu系统下，通常会有一些应用程序通过终端来打开，这时候我们希望在图形化桌面创建一个他的快捷方式，从而方便的打开它，这里，来记录一下创建过程。 这里我以为微信网页版应用建立桌面图标为例，其他应用步骤相</div>
+                    <div class="summary">Pycharm下初次使用的一些配置选项：今天个人在ubuntu下使用pycharm创建自己的第一个python工作环境，遇到一些小的问题，在这里记录下来1、选择编译器：个人安装的是anaconda3+pycharm，所以在这里选择了cond</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-09
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-13
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category" target="_blank">
-                                    Linux
+                            <a href="/categories/Python/" class="post-category" target="_blank">
+                                    Python
                                 </a>
                             
                             
@@ -848,8 +894,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/linux-tips/" target="_blank">
-                        <span class="chip bg-color">linux tips</span>
+                    <a href="/tags/pycharm/" target="_blank">
+                        <span class="chip bg-color">pycharm</span>
                     </a>
                     
                 </div>
