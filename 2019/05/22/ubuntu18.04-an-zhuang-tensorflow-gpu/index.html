@@ -344,8 +344,7 @@
             <div id="articleContent">
                 <p><strong>前言：</strong><br>学习深度学习，安装框架，本文介绍的是安装Tensorflow-gpu版本，如果你的电脑有NVIDA显卡，那么就可以安装，文章主要介绍如何安装Ubuntu18.04 + Tensorflow-gpu + cuda8.0 + cuDNN6.0。</p>
 <p><strong>一些名词：</strong><br><strong>CUDA</strong>(Compute Unified Device Architecture)，是显卡厂商NVIDIA推出的运算平台。CUDA™是一种由NVIDIA推出的通用并行计算架构，该架构使GPU能够解决复杂的计算问题。<br><strong>NVIDIA cuDNN</strong>是用于深度神经网络的GPU加速库。它强调性能、易用性和低内存开销。NVIDIA cuDNN可以集成到更高级别的机器学习框架中，如加州大学伯克利分校的流行caffe软件。简单的，插入式设计可以让开发人员专注于设计和实现神经网络模型，而不是调整性能，同时还可以在GPU上实现高性能现代并行计算。</p>
-<p><strong>安装过程：</strong><br><strong>一、打开软件更新-&gt;附加驱动，选择nvidia最新确定，然后应用更改。</strong><br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/8.jpg" alt><br>验证驱动是否安装成功：在应用搜索栏输入NVIDA，找到NVIDIA X Sever Settings并打开</p>
-<p>安装成功！</p>
+<p><strong>安装过程：</strong><br><strong>一、打开软件更新-&gt;附加驱动，选择nvidia最新驱动，然后应用更改。</strong><br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/8.jpg" alt><br>验证驱动是否安装成功：在应用搜索栏输入NVIDA，找到NVIDIA X Sever Settings并打开<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/10.png" alt><br>安装成功！</p>
 <p><strong>二、安装Tensorflow依赖的编译工具bazel</strong><br>1、安装bazel前，需先安装JDK8：<br>sudo apt-get install software-properties-common</p>
 <p>sudo add-apt-repository ppa:webupd8team/java</p>
 <p>sudo apt-get update</p>
@@ -356,7 +355,7 @@
 <p>sudo apt-get install bazel</p>
 <p>sudo apt-get upgrade bazel </p>
 <p><strong>三、安装cuda 8.0</strong><br>1、cuda 8.0 下载地址：<a href="https://developer.nvidia.com/cuda-80-ga2-download-archive" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-80-ga2-download-archive</a><br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/2.jpg" alt><br>2、下载完成后定位到下载目录，输入命令运行该文件<br>sudo sh cuda_8.0.27_linux.run –override</p>
-<p>注：–override是我在遇到gcc编译器版本过高时的解决办法，下面还是会需要对gcc降级，这里先用此方法处理，此时若遇到错误(在提示信息给出的log文件里可以查看到)：Can’t locate InstallUtils.pm in @INC，参考该博客解决方案：<a href="https://www.brilliantcode.net/1211/ubuntu-install-cuda-error-cant-locate-installutils-pm-in-inc/。" target="_blank" rel="noopener">https://www.brilliantcode.net/1211/ubuntu-install-cuda-error-cant-locate-installutils-pm-in-inc/。</a><br>关键部分：<br>mkdir cuda-8<br>sudo sh cuda_8.0.61_375.26_linux.run –noexec –target cuda-8<br>cp cuda-8/InstallUtils.pm /usr/share/perl5</p>
+<p>注：–override是我在遇到gcc编译器版本过高时的解决办法，下面还是会需要对gcc降级，这里先用此方法处理，此时若遇到错误(在提示信息给出的log文件里可以查看到)：Can’t locate InstallUtils.pm in @INC，参考该博客解决方案：<a href="https://www.brilliantcode.net/1211/ubuntu-install-cuda-error-cant-locate-installutils-pm-in-inc/" target="_blank" rel="noopener">https://www.brilliantcode.net/1211/ubuntu-install-cuda-error-cant-locate-installutils-pm-in-inc/</a><br>关键部分：<br>mkdir cuda-8<br>sudo sh cuda_8.0.61_375.26_linux.run –noexec –target cuda-8<br>cp cuda-8/InstallUtils.pm /usr/share/perl5</p>
 <p>3、安装结束后添加环境变量，输入 vim ~/.bashrc<br>export PATH=/usr/local/cuda-8.0/bin:$PATH</p>
 <p>export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH</p>
 <p>4、nvcc -V</p>
@@ -377,7 +376,9 @@
 <p>配置完成！</p>
 <p>五、Tensorflow（GPU）安装 ,输入命令</p>
 <p>pip install <a href="https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.2.0-cp27-none-linux_x86_64.whl" target="_blank" rel="noopener">https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.2.0-cp27-none-linux_x86_64.whl</a></p>
-<p>注意：若出现错误：tensorflow-0.5.0-cp27-none-linux_x86_64.whl is not a supported wheel on this platform.<br>解决办法：<br>wget <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="noopener">https://bootstrap.pypa.io/get-pip.py</a><br>sudo python2.7 get-pip.py<br>sudo python2.7 -m pip install <a href="https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.5.0-cp27-none-linux_x86_64.whl" target="_blank" rel="noopener">https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.5.0-cp27-none-linux_x86_64.whl</a> –default-timeout=1000</p>
+<p>注意：若出现错误：tensorflow-0.5.0-cp27-none-linux_x86_64.whl is not a supported wheel on this platform.<br>解决办法，输入以下命令：<br>wget <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="noopener">https://bootstrap.pypa.io/get-pip.py</a></p>
+<p>sudo python2.7 get-pip.py                                                                                                </p>
+<p>sudo python2.7 -m pip install <a href="https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.5.0-cp27-none-linux_x86_64.whl" target="_blank" rel="noopener">https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.5.0-cp27-none-linux_x86_64.whl</a> –default-timeout=1000</p>
 <p>测试：<br>进入python环境，输入：python2.7<br>输入以下代码：<br>import tensorflow as tf</p>
 <p>a=tf.constant([1.0,2.0,3.0],shape=[3],name=’a’)</p>
 <p>b=tf.constant([1.0,2.0,3.0],shape=[3],name=’b’)</p>
