@@ -354,8 +354,8 @@
 <p>sudo apt-get update </p>
 <p>sudo apt-get install bazel</p>
 <p>sudo apt-get upgrade bazel </p>
-<p><strong>三、安装cuda 8.0</strong><br>1、cuda 8.0 下载地址：<a href="https://developer.nvidia.com/cuda-80-ga2-download-archive" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-80-ga2-download-archive</a><br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/2.jpg" alt><br>2、下载完成后定位到下载目录，输入命令运行该文件<br>sudo sh cuda_8.0.27_linux.run –override</p>
-<p>注：–override是我在遇到gcc编译器版本过高时的解决办法，下面还是会需要对gcc降级，这里先用此方法处理，此时若遇到错误(在提示信息给出的log文件里可以查看到)：Can’t locate InstallUtils.pm in @INC，参考该博客解决方案：<a href="https://www.brilliantcode.net/1211/ubuntu-install-cuda-error-cant-locate-installutils-pm-in-inc/" target="_blank" rel="noopener">https://www.brilliantcode.net/1211/ubuntu-install-cuda-error-cant-locate-installutils-pm-in-inc/</a><br>关键部分：<br>mkdir cuda-8<br>sudo sh cuda_8.0.61_375.26_linux.run –noexec –target cuda-8<br>cp cuda-8/InstallUtils.pm /usr/share/perl5</p>
+<p><strong>三、安装cuda 8.0</strong><br>1、cuda 8.0 下载地址：<a href="https://developer.nvidia.com/cuda-80-ga2-download-archive" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-80-ga2-download-archive</a><br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/2.jpg" alt><br>2、下载完成后定位到下载目录，输入命令运行该文件<br>sudo sh cuda_8.0.27_linux.run —override</p>
+<p>注：—override是我在遇到gcc编译器版本过高时的解决办法，下面还是会需要对gcc降级，这里先用此方法处理，此时若遇到错误(在提示信息给出的log文件里可以查看到)：Can’t locate InstallUtils.pm in @INC，参考该博客解决方案：<a href="https://www.brilliantcode.net/1211/ubuntu-install-cuda-error-cant-locate-installutils-pm-in-inc/" target="_blank" rel="noopener">https://www.brilliantcode.net/1211/ubuntu-install-cuda-error-cant-locate-installutils-pm-in-inc/</a><br>关键部分：<br>mkdir cuda-8<br>sudo sh cuda_8.0.61_375.26_linux.run —noexec —target cuda-8<br>cp cuda-8/InstallUtils.pm /usr/share/perl5</p>
 <p>3、安装结束后添加环境变量，输入 vim ~/.bashrc<br>export PATH=/usr/local/cuda-8.0/bin:$PATH</p>
 <p>export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH</p>
 <p>4、nvcc -V</p>
@@ -363,7 +363,7 @@
 <p>nvcc -V</p>
 <p>nvidia-smi<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/3.jpg" alt></p>
 <p>5、验证cuda8是否安装成功：<br>    进入NVIDIA_CUDA-8.0_Samples目录，执行：make，这里应该会报错，因为cuda8.0不支持gcc 5.0以上的编译器，因此需要降级，把编译器版本降到4.8，降级方法参考博客：<a href="https://blog.csdn.net/qq_31175231/article/details/77774971" target="_blank" rel="noopener">https://blog.csdn.net/qq_31175231/article/details/77774971</a></p>
-<p>关键命令记录(g++只需替换gcc即可)：<br>sudo apt-get install gcc-4.8<br>sudo update-alternatives –install /usr/bin/gcc gcc /usr/bin/gcc-4.8 100<br>sudo update-alternatives –config gcc   （用于验证）<br>gcc –version       （用于验证）</p>
+<p>关键命令记录(g++只需替换gcc即可)：<br>sudo apt-get install gcc-4.8<br>sudo update-alternatives —install /usr/bin/gcc gcc /usr/bin/gcc-4.8 100<br>sudo update-alternatives —config gcc   （用于验证）<br>gcc —version       （用于验证）</p>
 <p>6、CUDA8.0安装成功测试，<br>进入NVIDIA_CUDA-8.0_Samples目录，执行： sudo make （需等待一段时间）</p>
 <p>结束后进入1_Utilities目录，执行：./deviceQuery/deviceQuery ，结果如下：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/4.png" alt><br>执行： nvcc -V，结果如下：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/deeplearning/tensorflow-gpu/5.jpg" alt></p>
 <p>四、安装cuDNN6.0<br>下载地址6.0： <a href="https://developer.nvidia.com/rdp/cudnn-archive" target="_blank" rel="noopener">https://developer.nvidia.com/rdp/cudnn-archive</a></p>
@@ -378,7 +378,7 @@
 <p>pip install <a href="https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.2.0-cp27-none-linux_x86_64.whl" target="_blank" rel="noopener">https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.2.0-cp27-none-linux_x86_64.whl</a></p>
 <p>注意：若出现错误：tensorflow-0.5.0-cp27-none-linux_x86_64.whl is not a supported wheel on this platform.<br>解决办法，输入以下命令：<br>wget <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="noopener">https://bootstrap.pypa.io/get-pip.py</a></p>
 <p>sudo python2.7 get-pip.py                                                                                                </p>
-<p>sudo python2.7 -m pip install <a href="https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.5.0-cp27-none-linux_x86_64.whl" target="_blank" rel="noopener">https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.5.0-cp27-none-linux_x86_64.whl</a> –default-timeout=1000</p>
+<p>sudo python2.7 -m pip install <a href="https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.5.0-cp27-none-linux_x86_64.whl" target="_blank" rel="noopener">https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.5.0-cp27-none-linux_x86_64.whl</a> —default-timeout=1000</p>
 <p>测试：<br>进入python环境，输入：python2.7<br>输入以下代码：<br>import tensorflow as tf</p>
 <p>a=tf.constant([1.0,2.0,3.0],shape=[3],name=’a’)</p>
 <p>b=tf.constant([1.0,2.0,3.0],shape=[3],name=’b’)</p>
@@ -825,7 +825,7 @@
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">前言：本文介绍如何利用数据挖掘工具knime来建立一个简单的机器学习工作流程–线性回归，本文是基于“工作年龄与薪酬的关系”问题进行建立knime工作流，从而建立该问题的预测模型。线性回归简单说明：利用目前已有数据(csv格式)，将其分为训练</div>
+                    <div class="summary">前言：本文介绍如何利用数据挖掘工具knime来建立一个简单的机器学习工作流程—线性回归，本文是基于“工作年龄与薪酬的关系”问题进行建立knime工作流，从而建立该问题的预测模型。线性回归简单说明：利用目前已有数据(csv格式)，将其分为训练</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-24
