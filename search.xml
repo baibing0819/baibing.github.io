@@ -8,7 +8,7 @@
       <link href="/2019/05/24/knime-zhi-xian-xing-hui-gui/"/>
       <url>/2019/05/24/knime-zhi-xian-xing-hui-gui/</url>
       
-        <content type="html"><![CDATA[<p>前言：<br>本文介绍如何利用数据挖掘工具knime来建立一个简单的机器学习工作流程—线性回归，本文是基于“工作年龄与薪酬的关系”问题进行建立knime工作流，从而建立该问题的预测模型。<br>线性回归简单说明：<br>利用目前已有数据(csv格式)，将其分为训练集和测试集，其中训练集用于训练模型，测试集用于测试模型的效果。最终让模型实现根据当前工作年龄来预测出薪酬。<br>预测函数： $ y = \theta_0 + \theta_1*x$      (也就是普通的直线方程)</p><p>knime工作流总图：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/15.jpg" alt></p><p>工作流建立步骤：<br>一、创建一个 CSV Reader（用于放我们的输入数据）：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/1.jpg" alt></p><p>2、双击节点打开配置界面，导入我们的输入数据，因为我们的数据只有列id是有用的，没有行id，所以下面只勾选has column header<br>  配置图：</p><p>  右键节点，选中file table可以查看我们的数据：<br>  <img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/2.jpg" alt><br>  配置完成后，点击运行节点，可以看到节点下面的指示灯由黄色变成绿色，说明建立成功。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/3.jpg" alt></p><p>二、scatter plot节点查看数据散点图<br>我们可以创建一个scatter plot节点来查看我们的数据散点图，如图，我们选择该节点并创建，然后将reader的输出端口连接到scatter plot的输入（鼠标保持左击画线即可），然后运行该节点，显示绿灯表示成功。此时，鼠标右键scatter plot节点选择view scatter plot，就可以查看图像了。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/6.jpg" alt><br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/4.jpg" alt><br>缺一张</p><p>三、partitionlng 节点划分数据<br>获取输入数据后，我们需要一个partitionlng节点将数据划分为训练集和测试集。如下图，选择该节点并与reader的输出连接，双击该节点进入配置选项，选择如下配置，Relative表示第一部分数据占总体的比例，这里选择70%，即按7:3的比例划分为训练集和测试集，下面的三个选项为划分数据的方式，我们选择随机选取70%。然后运行，无异常。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/8.jpg" alt></p><p>四、Linear Regression Learner节点训练模型<br>创建Linear Regression Learner节点进行数据的训练，将partitionlng第一个输出连接到linear的输入，两个输出端口的定义可以在node descriptio中看到，如下图，可以看出第一个输出口是训练集数据，即我们在partitionlng设置的first partition，运行，无异常。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/9.jpg" alt></p><p>五、RegressionPredictor节点得到训练模型<br>创建RegressionPredictor节点得到训练模型，并用测试集进行测试我们的模型效果，将Linear Regression Learner第一个输出(输出模型)连到Predictor的第一个输入，<br>partitionlng的第二个输出（测试集）连接到Predictor的第二个输入(进行测试)。点击运行无异常。右键该节点选择Pridicted data可以查看到数据，可以对比真实数据和我们预测的数据差别是否很大。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/10.jpg" alt></p><p>效果对比：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/14.jpg" alt></p><p>六、LinePlot、Numeric Scorer节点<br>预测之后，我们需要查看该模型的效果及预测函数是什么样子的，其中LinePlot用于对比我们的数据真实曲线和通过模型预测的数据曲线，创建直接连接即可。然后右击该节点选择 view line plot即可查看效果，如下图。Numeric Scorer用于得出显示我们模型性能的一些参数值，如图。分别是$R^2$、方差、绝对误差、标准差、平均有符号差。</p><p><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/12.jpg" alt></p><p><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/13.jpg" alt></p><p>至此，一个简单的线性回归模型就成功完成了。</p>]]></content>
+        <content type="html"><![CDATA[<p>前言：<br>本文介绍如何利用数据挖掘工具knime来建立一个简单的机器学习工作流程—线性回归，本文是基于“工作年龄与薪酬的关系”问题进行建立knime工作流，从而建立该问题的预测模型。该线性回归工作流和所需的数据文件都已放在github，有需要的自行下载。<br>Github地址：<a href="https://github.com/baibing0819/MachineLearning/tree/master/Knime/LinearRegression" target="_blank" rel="noopener">https://github.com/baibing0819/MachineLearning/tree/master/Knime/LinearRegression</a></p><p>线性回归简单说明：<br>利用目前已有数据(csv格式)，将其分为训练集和测试集，其中训练集用于训练模型，测试集用于测试模型的效果。最终让模型实现根据当前工作年龄来预测出薪酬。<br>预测函数： $ y = \theta_0 + \theta_1*x$                          (也就是普通的直线方程)</p><p>knime工作流总图：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/15.jpg" alt></p><p>工作流建立步骤：<br>一、创建一个 CSV Reader（用于放我们的输入数据）：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/1.jpg" alt></p><p>2、双击节点打开配置界面，导入我们的输入数据，因为我们的数据只有列id是有用的，没有行id，所以下面只勾选has column header<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/99.jpg" alt></p><p>  右键节点，选中file table可以查看我们的数据：<br>  <img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/2.jpg" alt><br>  配置完成后，点击运行节点，可以看到节点下面的指示灯由黄色变成绿色，说明建立成功。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/3.jpg" alt></p><p>二、scatter plot节点查看数据散点图<br>我们可以创建一个scatter plot节点来查看我们的数据散点图，如图，我们选择该节点并创建，然后将reader的输出端口连接到scatter plot的输入（鼠标保持左击画线即可），然后运行该节点，显示绿灯表示成功。此时，鼠标右键scatter plot节点选择view scatter plot，就可以查看图像了。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/6.jpg" alt><br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/4.jpg" alt></p><p><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/100.jpg" alt></p><p>三、partitionlng 节点划分数据<br>获取输入数据后，我们需要一个partitionlng节点将数据划分为训练集和测试集。如下图，选择该节点并与reader的输出连接，双击该节点进入配置选项，选择如下配置，Relative表示第一部分数据占总体的比例，这里选择70%，即按7:3的比例划分为训练集和测试集，下面的三个选项为划分数据的方式，我们选择随机选取70%。然后运行，无异常。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/8.jpg" alt></p><p>四、Linear Regression Learner节点训练模型<br>创建Linear Regression Learner节点进行数据的训练，将partitionlng第一个输出连接到linear的输入，两个输出端口的定义可以在node descriptio中看到，如下图，可以看出第一个输出口是训练集数据，即我们在partitionlng设置的first partition，运行，无异常。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/9.jpg" alt></p><p>五、RegressionPredictor节点得到训练模型<br>创建RegressionPredictor节点得到训练模型，并用测试集进行测试我们的模型效果，将Linear Regression Learner第一个输出(输出模型)连到Predictor的第一个输入，<br>partitionlng的第二个输出（测试集）连接到Predictor的第二个输入(进行测试)。点击运行无异常。右键该节点选择Pridicted data可以查看到数据，可以对比真实数据和我们预测的数据差别是否很大。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/10.jpg" alt></p><p>效果对比：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/14.jpg" alt></p><p>六、LinePlot、Numeric Scorer节点<br>预测之后，我们需要查看该模型的效果及预测函数是什么样子的，其中LinePlot用于对比我们的数据真实曲线和通过模型预测的数据曲线，创建直接连接即可。然后右击该节点选择 view line plot即可查看效果，如下图。Numeric Scorer用于得出显示我们模型性能的一些参数值，如图。分别是$R^2$、方差、绝对误差、标准差、平均有符号差。</p><p><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/12.jpg" alt></p><p><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/13.jpg" alt></p><p><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/15.jpg" alt></p><p>至此，一个简单的线性回归模型就成功完成了。</p>]]></content>
       
       
       <categories>
@@ -156,31 +156,6 @@
     
     
     <entry>
-      <title>linux中的vim操作</title>
-      <link href="/2019/03/10/linux-zhong-de-vim-cao-zuo/"/>
-      <url>/2019/03/10/linux-zhong-de-vim-cao-zuo/</url>
-      
-        <content type="html"><![CDATA[<p>基本命令：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/vim_cmd.png" alt></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Linux </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> vim </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>无重复字符的最长子串</title>
       <link href="/2019/03/10/wu-chong-fu-zi-fu-de-zui-chang-zi-chuan/"/>
       <url>/2019/03/10/wu-chong-fu-zi-fu-de-zui-chang-zi-chuan/</url>
@@ -200,6 +175,31 @@
             <tag> leetcode </tag>
             
             <tag> 字符串 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>linux中的vim操作</title>
+      <link href="/2019/03/10/linux-zhong-de-vim-cao-zuo/"/>
+      <url>/2019/03/10/linux-zhong-de-vim-cao-zuo/</url>
+      
+        <content type="html"><![CDATA[<p>基本命令：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/vim_cmd.png" alt></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vim </tag>
             
         </tags>
       
