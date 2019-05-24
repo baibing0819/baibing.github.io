@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://baibing0819.github.io/"/>
-  <updated>2019-05-23T02:11:10.658Z</updated>
+  <updated>2019-05-24T07:42:46.793Z</updated>
   <id>http://baibing0819.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Knime之简单线性回归</title>
+    <link href="http://baibing0819.github.io/2019/05/24/knime-zhi-xian-xing-hui-gui/"/>
+    <id>http://baibing0819.github.io/2019/05/24/knime-zhi-xian-xing-hui-gui/</id>
+    <published>2019-05-24T03:20:00.000Z</published>
+    <updated>2019-05-24T07:42:46.793Z</updated>
+    
+    <content type="html"><![CDATA[<p>前言：<br>本文介绍如何利用数据挖掘工具knime来建立一个简单的机器学习工作流程–线性回归，本文是基于“工作年龄与薪酬的关系”问题进行建立knime工作流，从而建立该问题的预测模型。<br>线性回归简单说明：<br>利用目前已有数据(csv格式)，将其分为训练集和测试集，其中训练集用于训练模型，测试集用于测试模型的效果。最终让模型实现根据当前工作年龄来预测出薪酬。<br>预测函数： $ y = \theta_0 + \theta_1*x$      (也就是普通的直线方程)</p><p>knime工作流总图：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/15.jpg" alt></p><p>工作流建立步骤：<br>一、创建一个 CSV Reader（用于放我们的输入数据）：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/1.jpg" alt></p><p>2、双击节点打开配置界面，导入我们的输入数据，因为我们的数据只有列id是有用的，没有行id，所以下面只勾选has column header<br>  配置图：</p><p>  右键节点，选中file table可以查看我们的数据：<br>  <img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/2.jpg" alt><br>  配置完成后，点击运行节点，可以看到节点下面的指示灯由黄色变成绿色，说明建立成功。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/3.jpg" alt></p><p>二、scatter plot节点查看数据散点图<br>我们可以创建一个scatter plot节点来查看我们的数据散点图，如图，我们选择该节点并创建，然后将reader的输出端口连接到scatter plot的输入（鼠标保持左击画线即可），然后运行该节点，显示绿灯表示成功。此时，鼠标右键scatter plot节点选择view scatter plot，就可以查看图像了。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/6.jpg" alt><br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/4.jpg" alt><br>缺一张</p><p>三、partitionlng 节点划分数据<br>获取输入数据后，我们需要一个partitionlng节点将数据划分为训练集和测试集。如下图，选择该节点并与reader的输出连接，双击该节点进入配置选项，选择如下配置，Relative表示第一部分数据占总体的比例，这里选择70%，即按7:3的比例划分为训练集和测试集，下面的三个选项为划分数据的方式，我们选择随机选取70%。然后运行，无异常。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/8.jpg" alt></p><p>四、Linear Regression Learner节点训练模型<br>创建Linear Regression Learner节点进行数据的训练，将partitionlng第一个输出连接到linear的输入，两个输出端口的定义可以在node descriptio中看到，如下图，可以看出第一个输出口是训练集数据，即我们在partitionlng设置的first partition，运行，无异常。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/9.jpg" alt></p><p>五、RegressionPredictor节点得到训练模型<br>创建RegressionPredictor节点得到训练模型，并用测试集进行测试我们的模型效果，将Linear Regression Learner第一个输出(输出模型)连到Predictor的第一个输入，<br>partitionlng的第二个输出（测试集）连接到Predictor的第二个输入(进行测试)。点击运行无异常。右键该节点选择Pridicted data可以查看到数据，可以对比真实数据和我们预测的数据差别是否很大。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/10.jpg" alt></p><p>效果对比：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/14.jpg" alt></p><p>六、LinePlot、Numeric Scorer节点<br>预测之后，我们需要查看该模型的效果及预测函数是什么样子的，其中LinePlot用于对比我们的数据真实曲线和通过模型预测的数据曲线，创建直接连接即可。然后右击该节点选择 view line plot即可查看效果，如下图。Numeric Scorer用于得出显示我们模型性能的一些参数值，如图。分别是$R^2$、方差、绝对误差、标准差、平均有符号差。</p><p><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/12.jpg" alt></p><p><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/linearRegression/13.jpg" alt></p><p>至此，一个简单的线性回归模型就成功完成了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;前言：&lt;br&gt;本文介绍如何利用数据挖掘工具knime来建立一个简单的机器学习工作流程–线性回归，本文是基于“工作年龄与薪酬的关系”问题进行建立knime工作流，从而建立该问题的预测模型。&lt;br&gt;线性回归简单说明：&lt;br&gt;利用目前已有数据(csv格式)，将其分为训练集和测试集
+      
+    
+    </summary>
+    
+      <category term="数据挖掘" scheme="http://baibing0819.github.io/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+    
+      <category term="Knime" scheme="http://baibing0819.github.io/tags/Knime/"/>
+    
+  </entry>
   
   <entry>
     <title>Ubuntu18.04安装Tensorflow-gpu</title>
@@ -170,33 +195,6 @@
   </entry>
   
   <entry>
-    <title>两数之和</title>
-    <link href="http://baibing0819.github.io/2019/03/10/liang-shu-zhi-he/"/>
-    <id>http://baibing0819.github.io/2019/03/10/liang-shu-zhi-he/</id>
-    <published>2019-03-10T03:20:00.000Z</published>
-    <updated>2019-03-13T12:19:27.487Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>问题描述：</strong><br>        给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。你可以假设每种输入只会对应一个答案。但是，返回的两个下标不能相同，即不能为相同的一个元素。<br>示例：<br>        给定 nums = [2, 7, 11, 15], target = 9<br>        因为 nums[0] + nums[1] = 2 + 7 = 9<br>        所以返回 [0, 1]</p><p><strong>思路一（暴力法）：</strong><br>        遍历每个元素 x，并查找是否存在一个值与 target - x 相等的目标元素。显然是需要两个迭代，使用C编写。<br><strong>code:</strong></p><pre><code>int* twoSum(int* nums, int numsSize, int target) {    static int a[2] = {0};    int i,j;    i = j = 0;    for(i = 0;i &lt; numsSize;i++)    {        for(j = i+1;j &lt; numsSize;j++)        {            if(nums[i] + nums[j] == target)            {                a[0] = i;                a[1] = j;                return a;            }        }    }    return 0;}</code></pre><p>复杂度：<br>       时间复杂度：O(n^2)；            空间复杂度：O(1)</p><p><strong>思路二：</strong><br>        对于上述问题，我们可以优化其时间复杂度，在查找数组中是否存在满足目标值的迭代中，我们可以利用哈希表的特点，能够使索引与数据一一对应，这样我们查找目标值时，时间复杂度可以由O(n)变为O(1)(当然是理想状况下，由于hash map还存在冲突等问题，并不能完全达到O(1)的时间，但其效率还是要远远大于O(n))。由于用C编写hashmap较复杂，所以这里我们用Python编写，用其中的’字典’来存储数据，因为字典背后的原理就是一个散列表。在进行迭代并将元素插入到表中的同时(元素不在表中)，我们还会回过头来检查表中是否已经存在当前元素所对应的目标元素。如果它存在，那我们已经找到了对应解，并立即将其返回。<br><strong>code：</strong></p><pre><code>class Solution:    def twoSum(self,nums,target):        length = len(nums)        key = {}        for i in range(length):            new_n = target - nums[i];    #用于判断当前值对应的目标元素是否在新字典里            if new_n in key:                return [key[new_n],i]       #目标元素在新字典中，直接返回其下标            if nums[i] not in key:                key[nums[i]] = i            #目标元素不在新字典中，将当前值存储到新字典中，用于后面原字典数据的判断</code></pre><p>复杂度：<br>      因为只使用了一个迭代，故时间复杂度O(n)；同样的，因为用新字典key{}存储已经判断过的值，即我们是通过空间的提升换取时间效率的提升，所以空间复杂度由O(1)变为O(n)。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;strong&gt;问题描述：&lt;/strong&gt;&lt;br&gt;        给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。你可以假设每种输入只会对应一个答案。但是，返回的两个下标不能相同，即不能为相同的一个元
-      
-    
-    </summary>
-    
-      <category term="Programming Thinking" scheme="http://baibing0819.github.io/categories/Programming-Thinking/"/>
-    
-    
-      <category term="求和算法" scheme="http://baibing0819.github.io/tags/%E6%B1%82%E5%92%8C%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="leetcode" scheme="http://baibing0819.github.io/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
     <title>无重复字符的最长子串</title>
     <link href="http://baibing0819.github.io/2019/03/10/wu-chong-fu-zi-fu-de-zui-chang-zi-chuan/"/>
     <id>http://baibing0819.github.io/2019/03/10/wu-chong-fu-zi-fu-de-zui-chang-zi-chuan/</id>
@@ -221,6 +219,33 @@
       <category term="leetcode" scheme="http://baibing0819.github.io/tags/leetcode/"/>
     
       <category term="字符串" scheme="http://baibing0819.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>两数之和</title>
+    <link href="http://baibing0819.github.io/2019/03/10/liang-shu-zhi-he/"/>
+    <id>http://baibing0819.github.io/2019/03/10/liang-shu-zhi-he/</id>
+    <published>2019-03-10T03:20:00.000Z</published>
+    <updated>2019-03-13T12:19:27.487Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>问题描述：</strong><br>        给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。你可以假设每种输入只会对应一个答案。但是，返回的两个下标不能相同，即不能为相同的一个元素。<br>示例：<br>        给定 nums = [2, 7, 11, 15], target = 9<br>        因为 nums[0] + nums[1] = 2 + 7 = 9<br>        所以返回 [0, 1]</p><p><strong>思路一（暴力法）：</strong><br>        遍历每个元素 x，并查找是否存在一个值与 target - x 相等的目标元素。显然是需要两个迭代，使用C编写。<br><strong>code:</strong></p><pre><code>int* twoSum(int* nums, int numsSize, int target) {    static int a[2] = {0};    int i,j;    i = j = 0;    for(i = 0;i &lt; numsSize;i++)    {        for(j = i+1;j &lt; numsSize;j++)        {            if(nums[i] + nums[j] == target)            {                a[0] = i;                a[1] = j;                return a;            }        }    }    return 0;}</code></pre><p>复杂度：<br>       时间复杂度：O(n^2)；            空间复杂度：O(1)</p><p><strong>思路二：</strong><br>        对于上述问题，我们可以优化其时间复杂度，在查找数组中是否存在满足目标值的迭代中，我们可以利用哈希表的特点，能够使索引与数据一一对应，这样我们查找目标值时，时间复杂度可以由O(n)变为O(1)(当然是理想状况下，由于hash map还存在冲突等问题，并不能完全达到O(1)的时间，但其效率还是要远远大于O(n))。由于用C编写hashmap较复杂，所以这里我们用Python编写，用其中的’字典’来存储数据，因为字典背后的原理就是一个散列表。在进行迭代并将元素插入到表中的同时(元素不在表中)，我们还会回过头来检查表中是否已经存在当前元素所对应的目标元素。如果它存在，那我们已经找到了对应解，并立即将其返回。<br><strong>code：</strong></p><pre><code>class Solution:    def twoSum(self,nums,target):        length = len(nums)        key = {}        for i in range(length):            new_n = target - nums[i];    #用于判断当前值对应的目标元素是否在新字典里            if new_n in key:                return [key[new_n],i]       #目标元素在新字典中，直接返回其下标            if nums[i] not in key:                key[nums[i]] = i            #目标元素不在新字典中，将当前值存储到新字典中，用于后面原字典数据的判断</code></pre><p>复杂度：<br>      因为只使用了一个迭代，故时间复杂度O(n)；同样的，因为用新字典key{}存储已经判断过的值，即我们是通过空间的提升换取时间效率的提升，所以空间复杂度由O(1)变为O(n)。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;问题描述：&lt;/strong&gt;&lt;br&gt;        给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。你可以假设每种输入只会对应一个答案。但是，返回的两个下标不能相同，即不能为相同的一个元
+      
+    
+    </summary>
+    
+      <category term="Programming Thinking" scheme="http://baibing0819.github.io/categories/Programming-Thinking/"/>
+    
+    
+      <category term="求和算法" scheme="http://baibing0819.github.io/tags/%E6%B1%82%E5%92%8C%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="leetcode" scheme="http://baibing0819.github.io/tags/leetcode/"/>
     
   </entry>
   
