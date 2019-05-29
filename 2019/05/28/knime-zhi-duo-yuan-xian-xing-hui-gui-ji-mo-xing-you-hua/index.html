@@ -351,7 +351,7 @@ $ h_\theta（x） = \theta_0 ">
 <p>3、选择特征<br>Column Filter：<br>我们用该节点来选择特征作为输入，即可以在训练模型之前去掉不需要的特征，配置如图，这里我只去掉了id这一特征。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/12.jpg" alt></p>
 <p>Foward Feature Selection：<br>该节点也是一个元节点，双击可查看其内部节点构造，如图<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/4.jpg" alt></p>
 <p>节点功能：特征选择：正向选择(如下表述)</p>
-<pre><code> while((p值大于阈值) &amp;&amp; （特征数量达到上线）):
+<pre><code> while((p值大于阈值) || （特征数量达到上线）):
       1、选择一个最相关的特征输入模型（每个特征分别输入模型，选择p值最小的特征）
       2、保留上一个特征，从剩余的特征中再选择一个输入模型</code></pre><p>-我们看一下 loop start节点配置，如图，左边static columns表示不变的特征，即我们肯定选择的特征，这是我们通过之前的数据分析得到的必定相关的特征。右边则是可变特征，需要元节点自行根据上述程序选择。下方则是设置特征数量的阈值，我们最多想要多少个特征。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/13.jpg" alt></p>
 <p>-partionlng节点和之前一样的配置即可，接下来的三个黄框选中的节点是要求我们自己来替换的，分别是训练模型的学习器，模型预测器以及scorer，且配置与线性回归类似。需要注意的是numerical scorer的配置，如下图，需要选中复选框，因为我们的下一个节点loop end的输入需要为flow variable，配置好后我们右键scorer节点，选择show flow variables ports，然后将其与loop end连接即可。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/14.jpg" alt></p>
@@ -360,7 +360,7 @@ $ h_\theta（x） = \theta_0 ">
 <p>特征归一化：<br>特征归一化能够更高效的找到最合适的模型，从图像上看经过归一化后，特征图更加的圆滑而非原始的窄长型，具体的细节大家可以看下吴恩达的机器学习课程，这里就不在赘述了，直接附归一化公式   （z-score公式） ：$ x_i = (x_i - \mu)/ \sigma $ ,其中 $\sigma$ 是标准差，还有另外一个公式（最大最小公式）即：$ x_i = (x_i - \mu)/ s $ ,其中s = max -min 。</p>
 <p>我们使用Normalizer以及Normalizer(Apply)，前者我们用于归一化训练集并保存归一化各个特征时的参数，后者则利用前者的参数对测试集进行归一化，(测试集相当于未知数据，我们不能直接将他归一化，即使目前他是已知的，但依旧要假设为未知，这也是划分数据的意义)。配置如下图：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/18.jpg" alt></p>
 <p>最后全部运行，得到结果如图，经过我们的优化，我们得到了不错的结果。当然，我们需要在优化上多做训练、多分析原始数据，本文只是介绍了方法，具体的应用还需多多实践。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/17.jpg" alt></p>
-<p>附本文实例所需数据还有工作流文件：</p>
+<p>附本文实例所需数据还有工作流文件：<br>github地址：<a href="https://github.com/baibing0819/MachineLearning/tree/master/Knime/MultiLinearRegression" target="_blank" rel="noopener">https://github.com/baibing0819/MachineLearning/tree/master/Knime/MultiLinearRegression</a></p>
 
             </div>
             <hr>

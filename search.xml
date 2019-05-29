@@ -8,7 +8,7 @@
       <link href="/2019/05/28/knime-zhi-duo-yuan-xian-xing-hui-gui-ji-mo-xing-you-hua/"/>
       <url>/2019/05/28/knime-zhi-duo-yuan-xian-xing-hui-gui-ji-mo-xing-you-hua/</url>
       
-        <content type="html"><![CDATA[<p>本文基于房价预测问题来在Knime上实现多元线性回归，并在此基础上讨论如何优化模型。文末提供数据获取地址及knime工作流。</p><p>多元线性回归预测函数  （即含有更多的特征，多特征问题）：  </p><p>$ h_\theta（x） = \theta_0 + \theta_1 * x_1 + \theta_2 * x_2 + … + \theta_n * x_n $</p><p>knime工作流：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/1.jpg" alt></p><p>可以看出来，多元线性回归和线性回归似乎是一样的，它在数据上有更多的特征信息，我们需要建立起这些特征与目标的关系，这个图实现的具体细节这里就不再赘述了，有疑问的可以看我的前一篇Knime之线性回归的文章，接下来我们主要讲一下模型优化的一些方法。</p><p>原始数据图：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/5.jpg" alt><br>模型优化：<br>多元线性回归问题它的特点是特征多，而并不是所有的特征都是与我们的目标预测值都有很大的关联，可能有的特征对目标预测值的影响几乎微乎其微，而计算机在训练模型时，为了将所有的特征都考虑进去，可能会出现过拟合的问题，即在已有训练集上完美表现，但是在测试集、未知数据上表现很差，所以我们可以通过减少特征、选取合适的特征来训练模型。<br>1、数据可视化<br>在训练模型之前，我们可以用一些数据可视化的节点来分析我们的原始数据，看是否能够得到一些特征与目标之间的关联程度，这样在前期我们就可能做到去掉那些毫无关联的特征。这些节点如下图（具体获取细节参见前一章的线性回归内容）：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/3.jpg" alt><br>Statistics节点：<br>他能够帮我们统计每一个特征的平局值、最大、最小，数据分布位置等信息。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/6.jpg" alt><br>Scatter Matrix节点：<br>他帮助我们得到数据之间的关系，如下图我们选中节点来看他的视图(右键 view ..),最下方让我们来选择想要看到的变量之间关系，左边是去掉的变量，右边是选择的变量，这里我们选择了卧室和房屋价格之间的关系，由红色圆圈部分我们可与看出随着卧室数量的增加，房屋价格也在逐渐增加，但增加到一定程度时，卧室数量继续增加，此时房屋反而下降。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/7.jpg" alt><br>Scatter Plot节点：<br>他具有和Scatter Martrix相似的功能，不过他只是显示两个变量之间的关系，操作如下图：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/8.jpg" alt><br>Histogram(interactive)节点：<br>绘制变量关系直方图，操作如下图，可以看出bathroom和房屋价格之间的关系：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/9.jpg" alt></p><p>Linear Correlation：<br>该节点能够显示所有特征两两之间的关联程度(根据颜色的深浅)，如图，我们能够清晰的看出房屋价格与哪些变量之间有密切的关联。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/10.jpg" alt></p><p>2、整合节点<br>上面我们解释了很多的数据可视化的节点，将他们都放到同一界面显得有点乱且占空间，这时我们可以将他们整合为一个元节点，使界面更加整洁。操作是按住ctrl键选择要整合的所有节点，然后鼠标右键任意其中一个节点，选择collapse into MetaNode，然后给他名字即可，效果图如下。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/11.jpg" alt></p><p>3、选择特征<br>Column Filter：<br>我们用该节点来选择特征作为输入，即可以在训练模型之前去掉不需要的特征，配置如图，这里我只去掉了id这一特征。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/12.jpg" alt></p><p>Foward Feature Selection：<br>该节点也是一个元节点，双击可查看其内部节点构造，如图<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/4.jpg" alt></p><p>节点功能：特征选择：正向选择(如下表述)</p><pre><code> while((p值大于阈值) &amp;&amp; （特征数量达到上线）):      1、选择一个最相关的特征输入模型（每个特征分别输入模型，选择p值最小的特征）      2、保留上一个特征，从剩余的特征中再选择一个输入模型</code></pre><p>-我们看一下 loop start节点配置，如图，左边static columns表示不变的特征，即我们肯定选择的特征，这是我们通过之前的数据分析得到的必定相关的特征。右边则是可变特征，需要元节点自行根据上述程序选择。下方则是设置特征数量的阈值，我们最多想要多少个特征。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/13.jpg" alt></p><p>-partionlng节点和之前一样的配置即可，接下来的三个黄框选中的节点是要求我们自己来替换的，分别是训练模型的学习器，模型预测器以及scorer，且配置与线性回归类似。需要注意的是numerical scorer的配置，如下图，需要选中复选框，因为我们的下一个节点loop end的输入需要为flow variable，配置好后我们右键scorer节点，选择show flow variables ports，然后将其与loop end连接即可。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/14.jpg" alt></p><p>-接着我们需要配置loop end节点，如图，表示我们期望节点最后选择的特征能给出的效果，这里我们选择平方差，且候选最小值（平方差越小意味着我们的模型效果越好）<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/15.jpg" alt></p><p>-最后我们全部运行该元节点，需要等一段时间，最后运行结束后，我们双击最后一个节点Feature selection Filter，可以看到运行的结果，如下图。经比较，我们选择了相对最好的一组特征（平方差相对最小且特征量多一点）<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/16.jpg" alt></p><p>特征归一化：<br>特征归一化能够更高效的找到最合适的模型，从图像上看经过归一化后，特征图更加的圆滑而非原始的窄长型，具体的细节大家可以看下吴恩达的机器学习课程，这里就不在赘述了，直接附归一化公式   （z-score公式） ：$ x_i = (x_i - \mu)/ \sigma $ ,其中 $\sigma$ 是标准差，还有另外一个公式（最大最小公式）即：$ x_i = (x_i - \mu)/ s $ ,其中s = max -min 。</p><p>我们使用Normalizer以及Normalizer(Apply)，前者我们用于归一化训练集并保存归一化各个特征时的参数，后者则利用前者的参数对测试集进行归一化，(测试集相当于未知数据，我们不能直接将他归一化，即使目前他是已知的，但依旧要假设为未知，这也是划分数据的意义)。配置如下图：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/18.jpg" alt></p><p>最后全部运行，得到结果如图，经过我们的优化，我们得到了不错的结果。当然，我们需要在优化上多做训练、多分析原始数据，本文只是介绍了方法，具体的应用还需多多实践。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/17.jpg" alt></p><p>附本文实例所需数据还有工作流文件：</p>]]></content>
+        <content type="html"><![CDATA[<p>本文基于房价预测问题来在Knime上实现多元线性回归，并在此基础上讨论如何优化模型。文末提供数据获取地址及knime工作流。</p><p>多元线性回归预测函数  （即含有更多的特征，多特征问题）：  </p><p>$ h_\theta（x） = \theta_0 + \theta_1 * x_1 + \theta_2 * x_2 + … + \theta_n * x_n $</p><p>knime工作流：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/1.jpg" alt></p><p>可以看出来，多元线性回归和线性回归似乎是一样的，它在数据上有更多的特征信息，我们需要建立起这些特征与目标的关系，这个图实现的具体细节这里就不再赘述了，有疑问的可以看我的前一篇Knime之线性回归的文章，接下来我们主要讲一下模型优化的一些方法。</p><p>原始数据图：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/5.jpg" alt><br>模型优化：<br>多元线性回归问题它的特点是特征多，而并不是所有的特征都是与我们的目标预测值都有很大的关联，可能有的特征对目标预测值的影响几乎微乎其微，而计算机在训练模型时，为了将所有的特征都考虑进去，可能会出现过拟合的问题，即在已有训练集上完美表现，但是在测试集、未知数据上表现很差，所以我们可以通过减少特征、选取合适的特征来训练模型。<br>1、数据可视化<br>在训练模型之前，我们可以用一些数据可视化的节点来分析我们的原始数据，看是否能够得到一些特征与目标之间的关联程度，这样在前期我们就可能做到去掉那些毫无关联的特征。这些节点如下图（具体获取细节参见前一章的线性回归内容）：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/3.jpg" alt><br>Statistics节点：<br>他能够帮我们统计每一个特征的平局值、最大、最小，数据分布位置等信息。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/6.jpg" alt><br>Scatter Matrix节点：<br>他帮助我们得到数据之间的关系，如下图我们选中节点来看他的视图(右键 view ..),最下方让我们来选择想要看到的变量之间关系，左边是去掉的变量，右边是选择的变量，这里我们选择了卧室和房屋价格之间的关系，由红色圆圈部分我们可与看出随着卧室数量的增加，房屋价格也在逐渐增加，但增加到一定程度时，卧室数量继续增加，此时房屋反而下降。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/7.jpg" alt><br>Scatter Plot节点：<br>他具有和Scatter Martrix相似的功能，不过他只是显示两个变量之间的关系，操作如下图：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/8.jpg" alt><br>Histogram(interactive)节点：<br>绘制变量关系直方图，操作如下图，可以看出bathroom和房屋价格之间的关系：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/9.jpg" alt></p><p>Linear Correlation：<br>该节点能够显示所有特征两两之间的关联程度(根据颜色的深浅)，如图，我们能够清晰的看出房屋价格与哪些变量之间有密切的关联。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/10.jpg" alt></p><p>2、整合节点<br>上面我们解释了很多的数据可视化的节点，将他们都放到同一界面显得有点乱且占空间，这时我们可以将他们整合为一个元节点，使界面更加整洁。操作是按住ctrl键选择要整合的所有节点，然后鼠标右键任意其中一个节点，选择collapse into MetaNode，然后给他名字即可，效果图如下。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/11.jpg" alt></p><p>3、选择特征<br>Column Filter：<br>我们用该节点来选择特征作为输入，即可以在训练模型之前去掉不需要的特征，配置如图，这里我只去掉了id这一特征。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/12.jpg" alt></p><p>Foward Feature Selection：<br>该节点也是一个元节点，双击可查看其内部节点构造，如图<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/4.jpg" alt></p><p>节点功能：特征选择：正向选择(如下表述)</p><pre><code> while((p值大于阈值) || （特征数量达到上线）):      1、选择一个最相关的特征输入模型（每个特征分别输入模型，选择p值最小的特征）      2、保留上一个特征，从剩余的特征中再选择一个输入模型</code></pre><p>-我们看一下 loop start节点配置，如图，左边static columns表示不变的特征，即我们肯定选择的特征，这是我们通过之前的数据分析得到的必定相关的特征。右边则是可变特征，需要元节点自行根据上述程序选择。下方则是设置特征数量的阈值，我们最多想要多少个特征。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/13.jpg" alt></p><p>-partionlng节点和之前一样的配置即可，接下来的三个黄框选中的节点是要求我们自己来替换的，分别是训练模型的学习器，模型预测器以及scorer，且配置与线性回归类似。需要注意的是numerical scorer的配置，如下图，需要选中复选框，因为我们的下一个节点loop end的输入需要为flow variable，配置好后我们右键scorer节点，选择show flow variables ports，然后将其与loop end连接即可。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/14.jpg" alt></p><p>-接着我们需要配置loop end节点，如图，表示我们期望节点最后选择的特征能给出的效果，这里我们选择平方差，且候选最小值（平方差越小意味着我们的模型效果越好）<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/15.jpg" alt></p><p>-最后我们全部运行该元节点，需要等一段时间，最后运行结束后，我们双击最后一个节点Feature selection Filter，可以看到运行的结果，如下图。经比较，我们选择了相对最好的一组特征（平方差相对最小且特征量多一点）<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/16.jpg" alt></p><p>特征归一化：<br>特征归一化能够更高效的找到最合适的模型，从图像上看经过归一化后，特征图更加的圆滑而非原始的窄长型，具体的细节大家可以看下吴恩达的机器学习课程，这里就不在赘述了，直接附归一化公式   （z-score公式） ：$ x_i = (x_i - \mu)/ \sigma $ ,其中 $\sigma$ 是标准差，还有另外一个公式（最大最小公式）即：$ x_i = (x_i - \mu)/ s $ ,其中s = max -min 。</p><p>我们使用Normalizer以及Normalizer(Apply)，前者我们用于归一化训练集并保存归一化各个特征时的参数，后者则利用前者的参数对测试集进行归一化，(测试集相当于未知数据，我们不能直接将他归一化，即使目前他是已知的，但依旧要假设为未知，这也是划分数据的意义)。配置如下图：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/18.jpg" alt></p><p>最后全部运行，得到结果如图，经过我们的优化，我们得到了不错的结果。当然，我们需要在优化上多做训练、多分析原始数据，本文只是介绍了方法，具体的应用还需多多实践。<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/knime/MultiLinearRegreession/17.jpg" alt></p><p>附本文实例所需数据还有工作流文件：<br>github地址：<a href="https://github.com/baibing0819/MachineLearning/tree/master/Knime/MultiLinearRegression" target="_blank" rel="noopener">https://github.com/baibing0819/MachineLearning/tree/master/Knime/MultiLinearRegression</a></p>]]></content>
       
       
       <categories>
@@ -181,31 +181,6 @@
     
     
     <entry>
-      <title>linux中的vim操作</title>
-      <link href="/2019/03/10/linux-zhong-de-vim-cao-zuo/"/>
-      <url>/2019/03/10/linux-zhong-de-vim-cao-zuo/</url>
-      
-        <content type="html"><![CDATA[<p>基本命令：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/vim_cmd.png" alt></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Linux </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> vim </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>无重复字符的最长子串</title>
       <link href="/2019/03/10/wu-chong-fu-zi-fu-de-zui-chang-zi-chuan/"/>
       <url>/2019/03/10/wu-chong-fu-zi-fu-de-zui-chang-zi-chuan/</url>
@@ -252,6 +227,31 @@
             <tag> 求和算法 </tag>
             
             <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>linux中的vim操作</title>
+      <link href="/2019/03/10/linux-zhong-de-vim-cao-zuo/"/>
+      <url>/2019/03/10/linux-zhong-de-vim-cao-zuo/</url>
+      
+        <content type="html"><![CDATA[<p>基本命令：<br><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/vim_cmd.png" alt></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vim </tag>
             
         </tags>
       
