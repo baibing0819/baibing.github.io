@@ -346,7 +346,50 @@
 <p><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/openSUSE%E7%9A%84%E5%AE%89%E8%A3%85/1.jpg" alt="1.jpg"></p>
 <p>Similarly, delete all your hard disk sdb.</p>
 <p><strong>Start partitioning your linux system：</strong><br>Selectsda，Then Select Partitions–&gt; add partition：</p>
-<p>|No.    |    Partition name| note |size    |Rote    |    format|<br>|—|—|—|—|—|<br>|1    | /    |Create a system disk|Operating System|    40g|ext4|<br>|2    |/boot/efi    |Create a system boot partition|EFI Boot Partition|    0.5g|FAT|<br>|3    |swap|Create a swap partition |Swap|    8g|ext4|<br>|4    |/soft    |Create a software disk|Data and ISV Applications|    All remaining|ext4|</p>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Partition name</th>
+<th>note</th>
+<th>size</th>
+<th>Rote</th>
+<th>format</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>/</td>
+<td>Create a system disk</td>
+<td>Operating System</td>
+<td>40g</td>
+<td>ext4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>/boot/efi</td>
+<td>Create a system boot partition</td>
+<td>EFI Boot Partition</td>
+<td>0.5g</td>
+<td>FAT</td>
+</tr>
+<tr>
+<td>3</td>
+<td>swap</td>
+<td>Create a swap partition</td>
+<td>Swap</td>
+<td>8g</td>
+<td>ext4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>/soft</td>
+<td>Create a software disk</td>
+<td>Data and ISV Applications</td>
+<td>All remaining</td>
+<td>ext4</td>
+</tr>
+</tbody></table>
 <p><strong>Add system disk, root directory image desc：</strong></p>
 <p>1、Select space size</p>
 <p><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/openSUSE%E7%9A%84%E5%AE%89%E8%A3%85/2.jpg" alt="2.jpg"></p>
@@ -358,7 +401,26 @@
 <p><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/openSUSE%E7%9A%84%E5%AE%89%E8%A3%85/5.jpg" alt="5.jpg"></p>
 <p>The creation of other partitions is also the same step, just follow the form above to select the configuration.</p>
 <p><strong>Similarly, add partitions to sdb：</strong></p>
-<p>|No.    |    Partition name| note |size    |Rote    |    format|<br>|—|—|—|—|—|<br>|1    |/home    |Create a home directory partition|Data and ISV Applications|    all|ext4|</p>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Partition name</th>
+<th>note</th>
+<th>size</th>
+<th>Rote</th>
+<th>format</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>/home</td>
+<td>Create a home directory partition</td>
+<td>Data and ISV Applications</td>
+<td>all</td>
+<td>ext4</td>
+</tr>
+</tbody></table>
 <p>Check that the entire partition is correct：</p>
 <p><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/openSUSE%E7%9A%84%E5%AE%89%E8%A3%85/6.jpg" alt="6.jpg"></p>
 <p><img src="https://ice-bai-1258776328.cos.ap-guangzhou.myqcloud.com/linux/openSUSE%E7%9A%84%E5%AE%89%E8%A3%85/7.jpg" alt="7.jpg"></p>
